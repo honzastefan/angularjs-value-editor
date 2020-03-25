@@ -7,6 +7,8 @@ import valueEditorModule from '../dist/angularjs-value-editor';
 import '../dist/angularjs-value-editor.css';
 import DemoController from './demo.controller';
 
+console.log(valueEditorModule);
+
 declare global {
     interface Window {
         jQuery: JQueryStatic;
@@ -15,6 +17,7 @@ declare global {
     }
 }
 
+// @ts-ignore
 window.$ = window.jQuery = jQuery;
 
 register('app', [valueEditorModule])

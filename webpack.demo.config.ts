@@ -1,8 +1,7 @@
-const {babelLoaderOptions} = require('./babel-loader');
-
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import {babelLoader, tsLoaderFactory} from './webpack-loaders';
 
 module.exports = {
     mode: 'development',
@@ -34,15 +33,8 @@ module.exports = {
                 test: /\.ts$/,
                 include: [/demo/, /dist/, /src/],
                 use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            ...babelLoaderOptions
-                        }
-                    },
-                    {
-                        loader: 'ts-loader'
-                    }
+                    babelLoader,
+                    tsLoaderFactory(__dirname)
                 ]
             },
             {
@@ -72,7 +64,7 @@ module.exports = {
             {
                 test: /\.(svg|png)$/,
                 loader: 'file-loader?name=[name].[ext]'
-            },
+            }
         ]
     },
 

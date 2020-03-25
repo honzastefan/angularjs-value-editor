@@ -1,5 +1,5 @@
 import '@babel/runtime/regenerator/index';
-import 'ace-builds';
+import 'ace-builds/src-noconflict/ace';
 import 'trumbowyg/dist/trumbowyg.min';
 import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/dist/plugins/table/trumbowyg.table.min';

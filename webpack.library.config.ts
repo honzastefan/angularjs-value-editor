@@ -1,9 +1,9 @@
-const {babelLoaderOptions} = require('./babel-loader');
+import {babelLoader, tsLoaderFactory} from './webpack-loaders';
 
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
+import path from 'path';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import {CleanWebpackPlugin} from 'clean-webpack-plugin';
+import UnminifiedWebpackPlugin from 'unminified-webpack-plugin';
 
 module.exports = (env, {mode}) => ({
     mode: 'none',
@@ -17,8 +17,9 @@ module.exports = (env, {mode}) => ({
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
-        library: 'angularjs-value-editor',
-        libraryTarget: 'umd'
+        library: 'valueEditorModule',
+        libraryTarget: 'umd',
+        umdNamedDefine: true
     },
 
     externals: {
@@ -45,18 +46,8 @@ module.exports = (env, {mode}) => ({
                 test: /\.ts$/,
                 include: [/src/],
                 use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            ...babelLoaderOptions
-                        }
-                    },
-                    {
-                        loader: 'ts-loader',
-                        options: {
-                            onlyCompileBundledFiles: true
-                        }
-                    }
+                    babelLoader,
+                    tsLoaderFactory(__dirname)
                 ]
             },
             {
@@ -144,12 +135,12 @@ module.exports = (env, {mode}) => ({
 
     devtool: 'source-map',
 
-    plugins: (function () {
+    plugins: (() => {
         const plugins = [
             new MiniCssExtractPlugin({
                 filename: '[name].css'
             }),
-            new CleanWebpackPlugin.CleanWebpackPlugin({
+            new CleanWebpackPlugin({
                 verbose: true,
                 cleanStaleWebpackAssets: false
             })];

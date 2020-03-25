@@ -14,17 +14,11 @@ html
                 kp-value-editor(
                     ng-model="value"
                     editor-id="ajdy"
-                    name="idx"
-                    type="'index-selection'"
+                    name="'jyr'"
+                    type="'velocity-template'"
                     disabled="disabled"
-                    placeholder="Index"
-                    options="{" +
-                         "items: dc.items" +
-                    "}"
-                    validations="{required: false}"
+                    placeholder="Velocity template"
                 )
-
-            button(type="button" ng-click="value = undefined") Reset
 
             div
                 label Disabled:

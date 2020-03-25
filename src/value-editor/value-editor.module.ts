@@ -12,6 +12,7 @@ import textValueEditorModule from './editors/text/text.value-editor.module';
 import yearValueEditorModule from './editors/year/year.value-editor.module';
 import cardNumberValueEditorModule from './editors/card-number/card-number.value-editor.module';
 import indexSelectionValueEditorModule from './editors/index-selection/index-selection.value-editor.module';
+import velocityTemplateValueEditorModule from './editors/velocity-template/velocity-template.value-editor.module';
 
 import ValueEditorComponent from './value-editor.component';
 import {EmptyConfigurationService} from './editors/abstract-value-editor';
@@ -33,7 +34,8 @@ export default register('angularjs-value-editor', [
     textValueEditorModule,
     yearValueEditorModule,
     cardNumberValueEditorModule,
-    indexSelectionValueEditorModule
+    indexSelectionValueEditorModule,
+    velocityTemplateValueEditorModule
 ])
     .service(EmptyConfigurationService.serviceName, EmptyConfigurationService)
     .component(ValueEditorComponent.componentName, ValueEditorComponent)

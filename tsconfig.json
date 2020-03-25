@@ -1,14 +1,27 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es2018",
-        "sourceMap": true,
-        "experimentalDecorators": true,
-        "baseUrl": ".",
-        "declaration": false
-    },
-    "exclude": [
-        "node_modules",
-        ".idea"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "sourceMap": false,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "removeComments": false,
+    "paths": {
+      "shared/*": [
+        "src/shared/*"
+      ],
+      "typings/*": [
+        "src/typings/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "idea",
+    "docs",
+    "reports",
+    "**/*.js"
+  ]
 }
